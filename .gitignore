@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Bot Avatar
+zla_avatar.png
+
+# Test
+test.py
