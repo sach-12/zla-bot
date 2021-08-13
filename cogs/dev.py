@@ -11,7 +11,7 @@ class dev(commands.Cog):
 
 
     @commands.command(aliases=['pull'])
-    async def git_pull(self, ctx):
+    async def git_pull_command(self, ctx):
         if ctx.author.id == 723377619420184668:
             sys.stdout.flush()
             p = subprocess.Popen(['git', 'pull'], stdout=subprocess.PIPE)
@@ -25,9 +25,9 @@ class dev(commands.Cog):
 
 
     @commands.command(aliases=['restart'])
-    async def _restart(self, ctx):
+    async def restart_command(self, ctx):
         if ctx.author.id == 723377619420184668:
-            await self.git_pull(ctx)
+            await self.git_pull_command(ctx)
             p = subprocess.Popen(['python3', 'start.py'])
             sys.exit(0)
         else:
