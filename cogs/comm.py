@@ -10,11 +10,18 @@ class comm(commands.Cog):
 
     def __init__(self, client):
         self.client = client
+        self.help = {
+            "zla!controller [initials or CID]": "Returns information about a specific ZLA controller given the query",
+            "zla!online": "Returns a list of online controllers"
+        }
 
 
     @commands.command(aliases=['help'])
     async def help_command(self, ctx):
-        await ctx.channel.send("I am help command")
+        emb = discord.Embed(title=":grey_question: ZLA information bot command list", color=discord.Color.blue())
+        for command in self.help:
+            emb.add_field(name=command, value=self.help[command], inline=False)
+        await ctx.channel.send(embed=emb)
 
 
     @commands.command(aliases=['online'])
