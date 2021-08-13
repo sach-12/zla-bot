@@ -25,7 +25,7 @@ async def cog_reload(ctx, extenstion:str):
             await client.get_channel(843879097519308803).send(f"{ext} unloaded")
             await asyncio.sleep(2)
             client.load_extension(ext)
-            await client.get_channel(843879097519308803).send(f"{ext} unloaded")
+            await client.get_channel(843879097519308803).send(f"{ext} loaded")
             await ctx.channel.send("Cog reload succesful")
         except Exception as e:
             await ctx.channel.send(e)
