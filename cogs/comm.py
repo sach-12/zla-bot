@@ -26,7 +26,7 @@ class comm(commands.Cog):
             soup = BeautifulSoup(res.content, "html.parser")
             online = soup.find("div", class_="list-group")
             controller_list = online.find_all("a")
-            emb = discord.Embed(title="Controllers online in Los Angeles ARTCC", timestamp=datetime.datetime.now())
+            emb = discord.Embed(title="Controllers online in Los Angeles ARTCC", timestamp=datetime.datetime.utcnow() + datetime.timedelta(hours=5, minutes=30))
             if(len(controller_list) == 0):
                 emb.description = "No controllers online"
                 emb.color = discord.Color.red()
