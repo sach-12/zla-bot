@@ -36,7 +36,8 @@ class func(commands.Cog):
             img = soup.find("img", class_="img-fluid rounded img-thumbnail")
             img_src = img["src"]
             cid = url.split('/')[-1]
-            return name, rating, month_hours, total_hours, month, img_src, cid, url
+            online_status = self.checkOnline(soup=soup, url=url)
+            return name, rating, month_hours, total_hours, month, img_src, cid, url, online_status
         else:
             return 404
 
@@ -70,6 +71,20 @@ class func(commands.Cog):
             except:
                 continue
         return 404
+
+
+    def checkOnline(self, soup:BeautifulSoup, url:str):
+        online = soup.find("div", class_="list-group")
+        controller_list = online.find_all("a")
+        if(len(controller_list) == 0):
+            return '🔴 Currently offline'
+        else:
+            for controller in controller_list:
+                info = controller.text.strip().split('\n')
+                profile_link = controller["href"]
+                if(profile_link == url):
+                    return f"☑️ Currently online - {info[0]}"
+        return '🔴 Currently offline'
 
 
 def setup(client):

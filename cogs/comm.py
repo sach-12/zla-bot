@@ -76,10 +76,12 @@ class comm(commands.Cog):
         total_hours = profile[3]
         img_src = profile[5]
         profile_url = profile[7]
+        online_status = profile[8]
         emb = discord.Embed(title=name, description=rating, url=profile_url, color=0xff10f0)
         emb.set_thumbnail(url=img_src)
         emb.add_field(name=f"Hours - {month}", value=month_hours)
         emb.add_field(name="Hours - Total", value=total_hours)
+        emb.set_footer(text=online_status)
         await ctx.channel.send(embed=emb)
         
         
