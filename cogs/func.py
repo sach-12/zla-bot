@@ -14,7 +14,8 @@ class func(commands.Cog):
             "S3": "Student 3",
             "C1": "Controller 1",
             "C3": "Controller 3",
-            "I1": "Instructor 1"
+            "I1": "Instructor 1",
+            "I3": "Instructor 3"
         }
 
 
@@ -59,10 +60,10 @@ class func(commands.Cog):
         res = requests.get(url=url)
         soup = BeautifulSoup(res.content, "html.parser")
         roster = soup.find(id='roster')
-        controller_list = roster.findChildren()
+        controller_list = roster.findChildren("tr")
         for controller in controller_list:
             try:
-                c = (controller.text.strip().split('\n')[2])
+                c = (controller.text.strip().split('\n')[-2])
                 if(c == initials.upper()):
                     profile = controller.find("a")
                     return profile["href"]
